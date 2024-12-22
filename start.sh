@@ -1,2 +1,0 @@
-cd scripts/
-./start.sh
