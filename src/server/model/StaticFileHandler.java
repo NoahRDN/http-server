@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class StaticFileHandler {
     private File publicDir;
+    private boolean enable_php;
     private static final Map<String, String> MIME_TYPES = new HashMap<>();
 
     static {
@@ -42,7 +43,8 @@ public class StaticFileHandler {
         return filePath.normalize();
     }
 
-    public HttpResponse handleRequest(HttpRequest request, File publicDir) {
+    public HttpResponse handleRequest(HttpRequest request, File publicDir, boolean enable_php) {
+        this.enable_php = enable_php;
         this.publicDir = publicDir;
         if (request == null) {
             return new HttpResponse(400, "text/plain", "Bad Request".getBytes());
@@ -226,7 +228,11 @@ public class StaticFileHandler {
     private HttpResponse executePhpFile(String requestedPath, HttpRequest request) {
         try {
             Path phpFilePath = Paths.get(requestedPath).toAbsolutePath().normalize();
-    
+
+            if (!this.enable_php) {
+                return new HttpResponse(404, "text/plain", "Veuillez activer le php en mettant enable_php=true pour executer un fichier php".getBytes());
+            }
+
             if (!Files.exists(phpFilePath) || !Files.isRegularFile(phpFilePath)) {
                 return new HttpResponse(404, "text/plain", "File not found.".getBytes());
             }

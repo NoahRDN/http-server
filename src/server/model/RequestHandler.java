@@ -7,11 +7,12 @@ import java.time.Instant;
 public class RequestHandler implements Runnable {
     private Socket clientSocket;
     private File publicDir;
-
+    private boolean enable_php;
     
-    public RequestHandler(Socket clientSocket, File publicDir) {
+    public RequestHandler(Socket clientSocket, File publicDir, boolean enable_php) {
         this.clientSocket = clientSocket;
         this.publicDir = publicDir;
+        this.enable_php = enable_php;
     }
     
     public RequestHandler(Socket clientSocket) {
@@ -28,7 +29,7 @@ public class RequestHandler implements Runnable {
             HttpRequest request = new HttpRequest(input);
             StaticFileHandler staticFileHandler = new StaticFileHandler();
             
-            HttpResponse response = staticFileHandler.handleRequest(request, publicDir);
+            HttpResponse response = staticFileHandler.handleRequest(request, publicDir, enable_php);
             output.write(response.getResponseBytes());
         } catch (IOException e) {
             e.printStackTrace();

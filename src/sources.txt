@@ -1,8 +1,8 @@
-./server/Server.java
 ./server/ServerRunner.java
 ./server/model/HttpRequest.java
-./server/model/HttpResponse.java
 ./server/model/StaticFileHandler.java
+./server/model/HttpResponse.java
 ./server/model/RequestHandler.java
+./server/Server.java
 ./server/utils/Config.java
 ./server/Launcher.java

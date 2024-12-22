@@ -20,8 +20,14 @@ public class HttpRequest {
         boolean isBody = false;
         headers = new HashMap<>();
 
+        if (!reader.ready()) {
+            // System.out.println("WARNING: Received an empty request.");
+            // throw new IllegalArgumentException("Request line is null or empty.");
+
+        }
+        
         if (line == null) {
-            throw new IllegalArgumentException("Request line is null.");
+            // throw new IllegalArgumentException("Request line is null.");
         }
 
         while (line != null && !line.isEmpty()) {

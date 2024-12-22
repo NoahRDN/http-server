@@ -17,12 +17,14 @@ public class Server {
     private boolean isRunning = true;
     private int port;
     private String publicDirectory;
+    private boolean enable_php;
     private ExecutorService threadPool;
 
     public void startServer() throws IOException {
         Config config = new Config();
         port = config.getInt("port", 8080);
         publicDirectory = config.get("public_directory");
+        enable_php =  Boolean.parseBoolean(config.get("enable_php"));
 
         threadPool = Executors.newFixedThreadPool(10);
 
@@ -35,7 +37,7 @@ public class Server {
 
                 File clientDirectory = new File(publicDirectory);
    
-                threadPool.execute(new RequestHandler(clientSocket, clientDirectory));
+                threadPool.execute(new RequestHandler(clientSocket, clientDirectory, enable_php));
     
             } catch (IOException e) {
                 if (!serverSocket.isClosed()) {

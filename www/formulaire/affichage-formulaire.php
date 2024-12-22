@@ -23,9 +23,6 @@
                 echo "POST: ".$_POST["nom"];
             }
 
-            if (isset($_POST["nom"]) && isset($_GET["nom"])) {
-                header("Location: redirection.php");
-            }
             ?>
         </section>
     </main>
