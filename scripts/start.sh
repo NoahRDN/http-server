@@ -26,7 +26,6 @@ else
     echo "L'installation a déjà été effectuée. Démarrage du serveur..."
 fi
 
-echo "Compilation du code source..."
 cd "$(dirname "$0")/../src"
 find . -type f -name "*.java" > sources.txt
 javac -d ../bin @sources.txt
