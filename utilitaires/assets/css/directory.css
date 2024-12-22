@@ -1,0 +1,41 @@
+body{
+    color: black;
+}
+
+.fas.fa-folder-open {
+    color: rgb(173, 173, 0); 
+}
+.fas.fa-file {
+    color: #6c757d;
+}
+i{
+    margin-right: 5px;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 60, 255);
+}
+a:visited{
+    color: #00129c;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.fa-file-code-html{
+    color: orange;
+}
+
+.fa-file-code-js{
+    color: yellow;
+}
+
+.fa-file-alt{
+    color: aqua;
+}
